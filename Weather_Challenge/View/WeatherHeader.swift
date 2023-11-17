@@ -16,7 +16,9 @@ class WeatherHeader: UITableViewHeaderFooterView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
+        stackView.backgroundColor = .yellow
         stackView.alignment = .center
+        stackView.spacing = 85
         return stackView
     }()
     
@@ -173,11 +175,11 @@ class WeatherHeader: UITableViewHeaderFooterView {
     
     private func configureConstraints() {
         let containerStackViewConstraints = [
-            containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50),
+            containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            containerStackView.heightAnchor.constraint(equalToConstant: 200)
+            containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            //containerStackView.heightAnchor.constraint(equalToConstant: 200)
         ]
         
         NSLayoutConstraint.activate(containerStackViewConstraints)
