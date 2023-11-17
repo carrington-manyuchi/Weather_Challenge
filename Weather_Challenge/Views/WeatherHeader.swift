@@ -164,7 +164,6 @@ class WeatherHeader: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func configureConstraints() {
         let containerStackViewConstraints = [
             containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -174,6 +173,5 @@ class WeatherHeader: UITableViewCell {
             containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
         ]
     }
-    
     
 }
