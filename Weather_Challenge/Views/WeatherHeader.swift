@@ -36,7 +36,7 @@ class WeatherHeader: UITableViewCell {
         return label
     }()
     
-    private let topWeatherStatuc: UILabel = {
+    private let topWeatherStatus: UILabel = {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sunny"
@@ -136,6 +136,29 @@ class WeatherHeader: UITableViewCell {
         return label
     }()
 
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        self.addSubview(containerStackView)
+        containerStackView.addArrangedSubview(topStackView)
+        containerStackView.addArrangedSubview(bottomStackView)
+        topStackView.addArrangedSubview(topTodayTemp)
+        topStackView.addArrangedSubview(topWeatherStatus)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    private func configureConstraints() {
+        let containerStackViewConstraints = [
+            containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+        ]
+    }
     
     
 }
