@@ -11,30 +11,6 @@ class WeatherTableViewCell: UITableViewCell {
     
     private let identifier = "WeatherTableViewCell"
     
-    private let containerStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.alignment = .center
-        return stackView
-    }()
-    
-    private let topStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.distribution = .fillEqually
-        stackView.alignment = .center
-        return stackView
-    }()
-    
-    private let bottomStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
-        stackView.alignment = .center
-        return stackView
-    }()
-    
     private let dayStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +68,6 @@ class WeatherTableViewCell: UITableViewCell {
         label.textAlignment = .center
         return label
     }()
-    
     
     
     
