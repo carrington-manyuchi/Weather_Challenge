@@ -27,8 +27,8 @@ class WeatherViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .blue
         view.addSubview(tableView)
-        //tableView.delegate = self
-       // tableView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     private func configureConstraints() {
@@ -40,8 +40,18 @@ class WeatherViewController: UIViewController {
        ]
         NSLayoutConstraint.activate(tableViewConstraints)
     }
-
-
 }
 
+extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        return cell
+    }
+    
+    
+}
 
