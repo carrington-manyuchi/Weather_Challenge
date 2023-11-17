@@ -155,10 +155,12 @@ class WeatherHeader: UITableViewHeaderFooterView {
         bottomStackView.addArrangedSubview(secondStackView)
         bottomStackView.addArrangedSubview(thirdStackView)
         
-        firstStackView.addArrangedSubview(headerMinLabel)
         firstStackView.addArrangedSubview(headerMinTemp)
+        firstStackView.addArrangedSubview(headerMinLabel)
+        
         secondStackView.addArrangedSubview(headerCurrentTemp)
         secondStackView.addArrangedSubview(headerCurrentLabel)
+        
         thirdStackView.addArrangedSubview(headerMaxTemp)
         thirdStackView.addArrangedSubview(headerMaxLabel)
         configureConstraints()
@@ -171,7 +173,7 @@ class WeatherHeader: UITableViewHeaderFooterView {
     
     private func configureConstraints() {
         let containerStackViewConstraints = [
-            containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            containerStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 50),
             containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
