@@ -35,6 +35,66 @@ class WeatherTableViewCell: UITableViewCell {
         return stackView
     }()
     
+    private let dayStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private let weatherIconStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private let tempLabelStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.alignment = .center
+        stackView.distribution = .equalCentering
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+     let dayLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Wednesday"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        return label
+    }()
+    
+     let weatherIcon: UIImageView = {
+        let imageView = UIImageView()
+         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "sun.max")
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+     let tempLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Wednesday"
+        label.textColor = .label
+        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        return label
+    }()
+    
+    
+    
     
    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
