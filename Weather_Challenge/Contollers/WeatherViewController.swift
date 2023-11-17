@@ -23,7 +23,6 @@ class WeatherViewController: UIViewController {
         configureConstraints()
     }
     
-    
     private func setupViews() {
         view.backgroundColor = .blue
         view.addSubview(tableView)
