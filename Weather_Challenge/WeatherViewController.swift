@@ -19,9 +19,23 @@ class WeatherViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        configureConstraints()
+    }
+    
+    
+    private func setupViews() {
         view.backgroundColor = .blue
+        view.addSubview(tableView)
+        //tableView.delegate = self
+       // tableView.dataSource = self
+    }
+    
+    private func configureConstraints() {
+        
     }
 
 
 }
+
 
