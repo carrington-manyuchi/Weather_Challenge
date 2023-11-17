@@ -140,10 +140,24 @@ class WeatherHeader: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.addSubview(containerStackView)
+        
         containerStackView.addArrangedSubview(topStackView)
         containerStackView.addArrangedSubview(bottomStackView)
+
         topStackView.addArrangedSubview(topTodayTemp)
         topStackView.addArrangedSubview(topWeatherStatus)
+        
+        bottomStackView.addArrangedSubview(firstStackView)
+        bottomStackView.addArrangedSubview(secondStackView)
+        bottomStackView.addArrangedSubview(thirdStackView)
+        
+        firstStackView.addArrangedSubview(headerMinLabel)
+        firstStackView.addArrangedSubview(headerMinTemp)
+        secondStackView.addArrangedSubview(headerCurrentTemp)
+        secondStackView.addArrangedSubview(headerCurrentLabel)
+        thirdStackView.addArrangedSubview(headerMaxTemp)
+        thirdStackView.addArrangedSubview(headerMaxLabel)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -156,6 +170,7 @@ class WeatherHeader: UITableViewCell {
             containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
             containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
             containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
         ]
     }
