@@ -6,8 +6,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class WeatherViewController: UIViewController {
+    
+    let weatherViewModel = WeatherViewModel()
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
     
     private let tableView: UITableView = {
         let tableView = UITableView()
@@ -45,15 +50,14 @@ class WeatherViewController: UIViewController {
 
 extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return weatherViewModel.dailyWeather.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else {
             return UITableViewCell()
         }
-        
-    
+        cell.configure(with: weatherViewModel.dailyWeather[indexPath.row])
 
         return cell
     }

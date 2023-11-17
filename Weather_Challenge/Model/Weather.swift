@@ -13,8 +13,6 @@ struct Weather: Codable {
     let current: Current
     let hourly: [Current]
     let daily: [Daily]
-
-   
 }
 
 // MARK: - Current

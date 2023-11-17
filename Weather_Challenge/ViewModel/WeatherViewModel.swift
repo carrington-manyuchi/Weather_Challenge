@@ -40,8 +40,6 @@ class WeatherViewModel {
         return dailyWeather.map { DailyWeatherViewModel(daily: $0) }
     }
 
-    // Other properties and methods as needed...
-
     func configure(with weather: Weather) {
         currentWeather = weather.current
         hourlyWeather = weather.hourly
@@ -77,7 +75,6 @@ class DailyWeatherViewModel {
         return "\(Int(daily.temp.min))°"
     }
 
-    // Other properties and methods as needed...
 }
 
 func getDayForDate(_ date: Date?) -> String {
