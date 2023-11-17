@@ -32,7 +32,13 @@ class WeatherViewController: UIViewController {
     }
     
     private func configureConstraints() {
-        
+       let tableViewConstraints = [
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+       ]
+        NSLayoutConstraint.activate(tableViewConstraints)
     }
 
 
