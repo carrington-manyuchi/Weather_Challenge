@@ -11,7 +11,6 @@ class WeatherTableViewCell: UITableViewCell {
     
     private let identifier = "WeatherTableViewCell"
     
-    
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -19,7 +18,24 @@ class WeatherTableViewCell: UITableViewCell {
         stackView.alignment = .center
         return stackView
     }()
-
+    
+    private let topStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    private let bottomStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    
    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
