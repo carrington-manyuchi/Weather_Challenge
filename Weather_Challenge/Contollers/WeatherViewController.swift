@@ -14,6 +14,8 @@ class WeatherViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemBackground
         tableView.separatorColor = .systemGray
+        tableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.identifier)
+        tableView.register(WeatherHeader.self, forHeaderFooterViewReuseIdentifier: "header")
         return tableView
     }()
 
@@ -21,7 +23,7 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         configureConstraints()
-    }
+    } 
     
     private func setupViews() {
         view.backgroundColor = .blue
@@ -47,9 +49,21 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else {
+            return UITableViewCell()
+        }
+        
+    
+
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        return header
+    }
+    
+    
     
     
 }

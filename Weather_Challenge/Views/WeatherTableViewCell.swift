@@ -9,7 +9,7 @@ import UIKit
 
 class WeatherTableViewCell: UITableViewCell {
     
-    private let identifier = "WeatherTableViewCell"
+    static let identifier = "WeatherTableViewCell"
     
     private let weatherStackView: UIStackView = {
         let stackView = UIStackView()

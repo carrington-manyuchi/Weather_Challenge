@@ -7,20 +7,22 @@
 
 import UIKit
 
-class WeatherHeader: UITableViewCell {
+class WeatherHeader: UITableViewHeaderFooterView {
     
     private static let  WeatherHeader = "identifier"
 
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
         stackView.alignment = .center
         return stackView
     }()
     
     private let topStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .center
@@ -32,7 +34,7 @@ class WeatherHeader: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "25°"
         label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 35, weight: .bold)
         return label
     }()
     
@@ -41,16 +43,18 @@ class WeatherHeader: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Sunny"
         label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.font = .systemFont(ofSize: 25, weight: .semibold)
         return label
     }()
     
     
     private let bottomStackView: UIStackView = {
         let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .center
+        stackView.spacing = 85
         return stackView
     }()
     
@@ -136,11 +140,11 @@ class WeatherHeader: UITableViewCell {
         return label
     }()
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init( reuseIdentifier: String?) {
+        super.init( reuseIdentifier: reuseIdentifier)
         
         self.addSubview(containerStackView)
-        
+
         containerStackView.addArrangedSubview(topStackView)
         containerStackView.addArrangedSubview(bottomStackView)
 
@@ -157,6 +161,7 @@ class WeatherHeader: UITableViewCell {
         secondStackView.addArrangedSubview(headerCurrentLabel)
         thirdStackView.addArrangedSubview(headerMaxTemp)
         thirdStackView.addArrangedSubview(headerMaxLabel)
+        configureConstraints()
         
     }
     
@@ -169,9 +174,11 @@ class WeatherHeader: UITableViewCell {
             containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
             containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            
             containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            containerStackView.heightAnchor.constraint(equalToConstant: 200)
         ]
+        
+        NSLayoutConstraint.activate(containerStackViewConstraints)
     }
     
 }
