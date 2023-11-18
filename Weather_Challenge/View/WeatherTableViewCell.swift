@@ -84,6 +84,20 @@ class WeatherTableViewCell: UITableViewCell {
         configureConstraints()
     }
     
+    
+    func configure(with model: Daily){
+        
+       // self.highTempLabel.textAlignment = .center
+       // self.lowTempLabel.textAlignment = .center
+        
+        
+        //self.lowTempLabel.text = "\(Int(model.temp.min))°"
+        self.tempLabel.text = "\(Int(model.temp.max))°"
+        
+        self.dayLabel.text =  getDayForDate(Date(timeIntervalSince1970: Double(model.dt)))
+        self.weatherIcon.image = UIImage(named: "sun") 
+    }
+    
     private func setupViews() {
         self.addSubview(weatherStackView)
         weatherStackView.addArrangedSubview(dayStackView)
@@ -109,14 +123,20 @@ class WeatherTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-}
-
-
-extension WeatherTableViewCell {
-    
-    func configure(with model: Daily) {
-        self.dayLabel.text = getDayForDate(Date(timeIntervalSince1970: Double(model.dt)))
-        self.weatherIcon.image = UIImage(named: "sun")
+    func getDayForDate(_ date: Date?) -> String {
+        guard let inputDate = date else {
+            return ""
+        }
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: inputDate)
     }
+    
 }
+
+
+
+
+
+
