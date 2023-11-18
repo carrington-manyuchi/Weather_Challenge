@@ -70,7 +70,7 @@ class WeatherTableViewCell: UITableViewCell {
      let tempLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Wednesday"
+        label.text = "22"
         label.textColor = .label
         label.font = .systemFont(ofSize: 13, weight: .regular)
         label.numberOfLines = 1
@@ -95,6 +95,18 @@ class WeatherTableViewCell: UITableViewCell {
         tempLabelStackView.addArrangedSubview(tempLabel)
     }
     
+    func configure(with model: Daily){
+        
+        
+        //self.lowTempLabel.text = "\(Int(model.temp.min))°"
+        self.tempLabel.text = "\(Int(model.temp.max))°"
+        self.dayLabel.text =  getDayForDate(Date(timeIntervalSince1970: Double(model.dt)))
+        self.weatherIcon.image = UIImage(systemName: "sun.max")
+    }
+       
+    
+    
+    
     private func configureConstraints() {
         let weatherStackViewConstraints = [
             weatherStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
@@ -107,6 +119,16 @@ class WeatherTableViewCell: UITableViewCell {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getDayForDate(_ date: Date?) -> String {
+        guard let inputDate = date else {
+            return ""
+        }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: inputDate)
     }
     
 }

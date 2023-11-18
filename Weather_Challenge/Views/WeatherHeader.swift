@@ -10,6 +10,17 @@ import UIKit
 class WeatherHeader: UITableViewHeaderFooterView {
     
     private static let  WeatherHeader = "identifier"
+    
+    private let headerBackground: UIImageView = {
+        let imageView = UIImageView()
+         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(systemName: "sun.max")
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.tintColor = .red
+        imageView.backgroundColor = .yellow
+        return imageView
+    }()
 
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
@@ -143,7 +154,9 @@ class WeatherHeader: UITableViewHeaderFooterView {
     override init( reuseIdentifier: String?) {
         super.init( reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(containerStackView)
+        //self.addSubview(containerStackView)
+        self.addSubview(headerBackground)
+        headerBackground.addSubview(containerStackView)
 
         containerStackView.addArrangedSubview(topStackView)
         containerStackView.addArrangedSubview(bottomStackView)
@@ -170,15 +183,24 @@ class WeatherHeader: UITableViewHeaderFooterView {
     }
     
     private func configureConstraints() {
+        let headerBackgroundConstraints = [
+            headerBackground.topAnchor.constraint(equalTo: self.topAnchor),
+            headerBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            headerBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            headerBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
+            headerBackground.heightAnchor.constraint(equalToConstant: 300)
+        ]
+        
         let containerStackViewConstraints = [
-            containerStackView.topAnchor.constraint(equalTo: self.topAnchor),
-            containerStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            containerStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            containerStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            containerStackView.heightAnchor.constraint(equalToConstant: 200)
+            containerStackView.topAnchor.constraint(equalTo: headerBackground.topAnchor),
+            containerStackView.leadingAnchor.constraint(equalTo: headerBackground.leadingAnchor),
+            containerStackView.trailingAnchor.constraint(equalTo: headerBackground.trailingAnchor),
+            containerStackView.bottomAnchor.constraint(equalTo: headerBackground.bottomAnchor),
+            containerStackView.heightAnchor.constraint(equalToConstant: 300)
         ]
         
         NSLayoutConstraint.activate(containerStackViewConstraints)
+        NSLayoutConstraint.activate(headerBackgroundConstraints)
     }
     
 }
