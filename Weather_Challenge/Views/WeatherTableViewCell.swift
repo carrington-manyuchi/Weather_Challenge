@@ -52,8 +52,9 @@ class WeatherTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Wednesday"
         label.textColor = .label
-        label.font = .systemFont(ofSize: 13, weight: .regular)
+        label.font = .systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
@@ -64,6 +65,7 @@ class WeatherTableViewCell: UITableViewCell {
         imageView.image = UIImage(systemName: "sun.max")
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
+         imageView.tintColor = .white
         return imageView
     }()
     
@@ -71,8 +73,8 @@ class WeatherTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "22"
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 13, weight: .regular)
+         label.textColor = .white
+        label.font = .systemFont(ofSize: 15, weight: .regular)
         label.numberOfLines = 1
         label.textAlignment = .center
         return label

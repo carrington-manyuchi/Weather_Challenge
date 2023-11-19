@@ -14,11 +14,9 @@ class WeatherHeader: UITableViewHeaderFooterView {
     private let headerBackground: UIImageView = {
         let imageView = UIImageView()
          imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "sun.max")
-        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "sea_sunnypng")
+        imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
-        imageView.tintColor = .red
-        imageView.backgroundColor = .yellow
         return imageView
     }()
 
@@ -27,6 +25,17 @@ class WeatherHeader: UITableViewHeaderFooterView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        stackView.spacing = 20
+        return stackView
+    }()
+    
+    private let firstTopStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.distribution = .fillEqually
         stackView.alignment = .center
         return stackView
     }()
@@ -40,21 +49,22 @@ class WeatherHeader: UITableViewHeaderFooterView {
         return stackView
     }()
     
+    
     private let topTodayTemp: UILabel = {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "25°"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 35, weight: .bold)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 40, weight: .bold)
         return label
     }()
     
     private let topWeatherStatus: UILabel = {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Sunny"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 25, weight: .semibold)
+        label.text = "SUNNY"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 30, weight: .semibold)
         return label
     }()
     
@@ -99,7 +109,7 @@ class WeatherHeader: UITableViewHeaderFooterView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "min"
-        label.textColor = .black
+        label.textColor = .white
         label.font = .systemFont(ofSize: 14, weight: .regular)
         label.numberOfLines = 1
         return label
@@ -109,8 +119,8 @@ class WeatherHeader: UITableViewHeaderFooterView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "19°"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.numberOfLines = 1
         return label
     }()
@@ -119,8 +129,8 @@ class WeatherHeader: UITableViewHeaderFooterView {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "25°"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
         return label
     }()
     
@@ -128,7 +138,7 @@ class WeatherHeader: UITableViewHeaderFooterView {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Current"
-        label.textColor = .black
+        label.textColor = .white
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
     }()
@@ -137,7 +147,7 @@ class WeatherHeader: UITableViewHeaderFooterView {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "max"
-        label.textColor = .black
+        label.textColor = .white
         label.font = .systemFont(ofSize: 14, weight: .regular)
         return label
     }()
@@ -146,8 +156,8 @@ class WeatherHeader: UITableViewHeaderFooterView {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "27°"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
         return label
     }()
 
@@ -158,9 +168,12 @@ class WeatherHeader: UITableViewHeaderFooterView {
         self.addSubview(headerBackground)
         headerBackground.addSubview(containerStackView)
 
+        containerStackView.addArrangedSubview(firstTopStackView)
         containerStackView.addArrangedSubview(topStackView)
         containerStackView.addArrangedSubview(bottomStackView)
+        containerStackView.addArrangedSubview(firstTopStackView)
 
+        topStackView.addArrangedSubview(firstTopStackView)
         topStackView.addArrangedSubview(topTodayTemp)
         topStackView.addArrangedSubview(topWeatherStatus)
         
@@ -168,14 +181,13 @@ class WeatherHeader: UITableViewHeaderFooterView {
         bottomStackView.addArrangedSubview(secondStackView)
         bottomStackView.addArrangedSubview(thirdStackView)
         
-        firstStackView.addArrangedSubview(headerMinLabel)
         firstStackView.addArrangedSubview(headerMinTemp)
+        firstStackView.addArrangedSubview(headerMinLabel)
         secondStackView.addArrangedSubview(headerCurrentTemp)
         secondStackView.addArrangedSubview(headerCurrentLabel)
         thirdStackView.addArrangedSubview(headerMaxTemp)
         thirdStackView.addArrangedSubview(headerMaxLabel)
         configureConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -187,8 +199,8 @@ class WeatherHeader: UITableViewHeaderFooterView {
             headerBackground.topAnchor.constraint(equalTo: self.topAnchor),
             headerBackground.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             headerBackground.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            headerBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            headerBackground.heightAnchor.constraint(equalToConstant: 300)
+            headerBackground.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            headerBackground.heightAnchor.constraint(equalToConstant: 400)
         ]
         
         let containerStackViewConstraints = [
@@ -196,7 +208,7 @@ class WeatherHeader: UITableViewHeaderFooterView {
             containerStackView.leadingAnchor.constraint(equalTo: headerBackground.leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: headerBackground.trailingAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: headerBackground.bottomAnchor),
-            containerStackView.heightAnchor.constraint(equalToConstant: 300)
+            containerStackView.heightAnchor.constraint(equalToConstant: 400)
         ]
         
         NSLayoutConstraint.activate(containerStackViewConstraints)

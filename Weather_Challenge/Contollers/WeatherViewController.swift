@@ -21,8 +21,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .systemBackground
-        tableView.separatorColor = .systemGray
+        tableView.backgroundColor = .systemCyan
+        tableView.separatorColor = .clear
         tableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.identifier)
         tableView.register(WeatherHeader.self, forHeaderFooterViewReuseIdentifier: "header")
         return tableView
@@ -35,7 +35,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     } 
     
     private func setupViews() {
-        view.backgroundColor = .blue
+        view.backgroundColor = .systemBlue
         view.addSubview(tableView)
         
         tableView.delegate = self
@@ -150,8 +150,7 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.configure(with: models[indexPath.row])
-    
-
+        cell.backgroundColor = .systemCyan
         return cell
     }
     
