@@ -61,11 +61,10 @@ class WeatherTableViewCell: UITableViewCell {
     
      let weatherIcon: UIImageView = {
         let imageView = UIImageView()
-         imageView.translatesAutoresizingMaskIntoConstraints = false
-       // imageView.image = UIImage(systemName: "sun.max")
-        imageView.contentMode = .scaleAspectFit
-      //  imageView.clipsToBounds = true
-         imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.tintColor = .white
         return imageView
     }()
     
@@ -99,31 +98,12 @@ class WeatherTableViewCell: UITableViewCell {
     
     func configure(with model: Daily){
         
-        
-        //self.lowTempLabel.text = "\(Int(model.temp.min))°"
         self.tempLabel.text = "\(Int(model.temp.max))°"
         self.dayLabel.text =  getDayForDate(Date(timeIntervalSince1970: Double(model.dt)))
-        self.weatherIcon.contentMode = .scaleAspectFill
-        
-//        let icon = model.weather[0].icon.lowercased()
-//        
-//        if icon.contains("clear") {
-//            self.weatherIcon.image = UIImage(systemName: "sun.max")
-//        }
-//        
-//        else if icon.contains("rain") {
-//            self.weatherIcon.image = UIImage(systemName: "cloud.rain")
-//        }
-//        else {
-//           self.weatherIcon.image = UIImage(systemName: "cloud.sun")
-//        }
-        
+
         let iconID = model.weather[0].id
-        
         let icon = getConditionName(weatherId: iconID)
-        
-        
-        
+
         self.weatherIcon.image = UIImage(systemName: icon)
         
         func getConditionName(weatherId: Int) -> String {
@@ -146,13 +126,8 @@ class WeatherTableViewCell: UITableViewCell {
                 return "cloud"
             }
         }
-        
-        
     }
        
-    
-    
-    
     private func configureConstraints() {
         let weatherStackViewConstraints = [
             weatherStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
@@ -176,5 +151,4 @@ class WeatherTableViewCell: UITableViewCell {
         formatter.dateFormat = "EEEE"
         return formatter.string(from: inputDate)
     }
-    
 }

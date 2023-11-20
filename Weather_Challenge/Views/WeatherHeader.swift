@@ -49,7 +49,6 @@ class WeatherHeader: UITableViewHeaderFooterView {
         return stackView
     }()
     
-    
     private let topTodayTemp: UILabel = {
         let label  = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -161,9 +160,6 @@ class WeatherHeader: UITableViewHeaderFooterView {
         return label
     }()
     
-    
-
-
     override init( reuseIdentifier: String?) {
         super.init( reuseIdentifier: reuseIdentifier)
         
@@ -193,14 +189,12 @@ class WeatherHeader: UITableViewHeaderFooterView {
         configureConstraints()        
     }
     
-    
     func configure(with header: Daily){
         self.headerMinTemp.text = "\(Int(header.temp.min))°"
         self.headerCurrentTemp.text =  "\(Int(header.temp.day))°"
         self.headerMaxTemp.text =  "\(Int(header.temp.max))°"
         self.topTodayTemp.text =  "\(Int(header.temp.day))°"
         self.topWeatherStatus.text =  "\(header.weather[0].description)"
-        
     }
     
     required init?(coder: NSCoder) {

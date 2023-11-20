@@ -14,7 +14,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     var models = [Daily]()
     var current: Current?
     
-    
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation?
     
@@ -65,7 +64,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func requestWeatherForLocation() {
-        
         guard let currentLocation = currentLocation else {
             return
         }
@@ -74,23 +72,18 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         let url = "https://api.openweathermap.org/data/2.5/onecall?lat=\(lat)&lon=\(long)&exclude=minutely,alerts&appid=a939b3a2c089cdc4dcefee3b74142319&units=metric"
         
-        let url2 = "https://api.openweathermap.org/data/2.5/onecall?lat=-26.005&lon=28.0039&exclude=minutely,alerts&appid=a939b3a2c089cdc4dcefee3b74142319"
-        print(url2)
-        
         print("\(long) & \(lat)"  )
         
-        //make a request with a datatask
-        
+        //MARK: - Make a request with a datatask
         let dataTask = URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
-             // validation
             
+            // validation
             guard let data = data, error == nil else {
                 print("Data validation is wrong")
                 return
             }
             
             //convert data to models / some object
-            
             var json: Weather?
             
             do {
@@ -106,25 +99,17 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             let entries = result.daily
             self.models.append(contentsOf: entries)
             
-            
             let current = result.current
             self.current = current
             
             let  hours = result.hourly
             self.hourly = hours
             
-           // print(result.hourly)
-            
-            
-            // update user interface
+            //MARK: -  Update user interface
 
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                
-                //self.tableView.tableHeaderView = self.createTableHeader()
             }
-            // update user interface
-
         }
         dataTask.resume()
     }
@@ -150,44 +135,19 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: WeatherTableViewCell.identifier, for: indexPath) as? WeatherTableViewCell else {
             return UITableViewCell()
         }
-        
         cell.configure(with: models[indexPath.row])
         cell.backgroundColor = .systemCyan
         return cell
     }
     
-   
-//    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! WeatherHeader
-//
-//        // Assuming 'models' is an array of Daily objects
-//        let dailyData = models[section]
-//        header.configure(with: dailyData)
-//
-//        return header
-//    }
-    
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard section < models.count else {
-            // Section index is out of bounds, return nil or handle accordingly
             return nil
         }
-
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! WeatherHeader
-
-        // Get the data for the current day (assuming the section index represents days)
         let dailyData = models[section]
         header.configure(with: dailyData)
-
         return header
     }
-
-
-    
-    
-    
-    
 }
 
