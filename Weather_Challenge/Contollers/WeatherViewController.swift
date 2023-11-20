@@ -25,6 +25,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         tableView.separatorColor = .clear
         tableView.register(WeatherTableViewCell.self, forCellReuseIdentifier: WeatherTableViewCell.identifier)
         tableView.register(WeatherHeader.self, forHeaderFooterViewReuseIdentifier: "header")
+
+        tableView.allowsSelection = false
         return tableView
     }()
 
@@ -154,10 +156,35 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+   
+//    
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! WeatherHeader
+//
+//        // Assuming 'models' is an array of Daily objects
+//        let dailyData = models[section]
+//        header.configure(with: dailyData)
+//
+//        return header
+//    }
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header")
+        guard section < models.count else {
+            // Section index is out of bounds, return nil or handle accordingly
+            return nil
+        }
+
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! WeatherHeader
+
+        // Get the data for the current day (assuming the section index represents days)
+        let dailyData = models[section]
+        header.configure(with: dailyData)
+
         return header
     }
+
+
     
     
     

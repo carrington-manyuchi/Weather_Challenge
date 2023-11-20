@@ -160,6 +160,9 @@ class WeatherHeader: UITableViewHeaderFooterView {
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         return label
     }()
+    
+    
+
 
     override init( reuseIdentifier: String?) {
         super.init( reuseIdentifier: reuseIdentifier)
@@ -187,7 +190,17 @@ class WeatherHeader: UITableViewHeaderFooterView {
         secondStackView.addArrangedSubview(headerCurrentLabel)
         thirdStackView.addArrangedSubview(headerMaxTemp)
         thirdStackView.addArrangedSubview(headerMaxLabel)
-        configureConstraints()
+        configureConstraints()        
+    }
+    
+    
+    func configure(with header: Daily){
+        self.headerMinTemp.text = "\(Int(header.temp.min))°"
+        self.headerCurrentTemp.text =  "\(Int(header.temp.day))°"
+        self.headerMaxTemp.text =  "\(Int(header.temp.max))°"
+        self.topTodayTemp.text =  "\(Int(header.temp.day))°"
+        self.topWeatherStatus.text =  "\(header.weather[0].description)"
+        
     }
     
     required init?(coder: NSCoder) {

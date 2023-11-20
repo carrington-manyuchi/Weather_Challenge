@@ -33,7 +33,7 @@ struct Current: Codable {
     let clouds, visibility: Int
     let windSpeed: Double
     let windDeg: Int
-    let weather: [WeatherElement]
+    let weather: [WeatherConditions]
     let windGust: Double?
    
 
@@ -52,7 +52,7 @@ struct Current: Codable {
 }
 
 // MARK: - WeatherElement
-struct WeatherElement: Codable {
+struct WeatherConditions: Codable {
     let id: Int
     let main: Main
     let description: Description
@@ -85,7 +85,7 @@ struct Daily: Codable {
     let dewPoint, windSpeed: Double
     let windDeg: Int
     let windGust: Double
-    let weather: [WeatherElement]
+    let weather: [WeatherConditions]
     let clouds: Int
     let pop, uvi: Double
     let rain: Double?

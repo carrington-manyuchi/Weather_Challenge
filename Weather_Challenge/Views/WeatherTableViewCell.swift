@@ -62,9 +62,9 @@ class WeatherTableViewCell: UITableViewCell {
      let weatherIcon: UIImageView = {
         let imageView = UIImageView()
          imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "sun.max")
+       // imageView.image = UIImage(systemName: "sun.max")
         imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
+      //  imageView.clipsToBounds = true
          imageView.tintColor = .white
         return imageView
     }()
@@ -103,7 +103,51 @@ class WeatherTableViewCell: UITableViewCell {
         //self.lowTempLabel.text = "\(Int(model.temp.min))°"
         self.tempLabel.text = "\(Int(model.temp.max))°"
         self.dayLabel.text =  getDayForDate(Date(timeIntervalSince1970: Double(model.dt)))
-        self.weatherIcon.image = UIImage(systemName: "sun.max")
+        self.weatherIcon.contentMode = .scaleAspectFill
+        
+//        let icon = model.weather[0].icon.lowercased()
+//        
+//        if icon.contains("clear") {
+//            self.weatherIcon.image = UIImage(systemName: "sun.max")
+//        }
+//        
+//        else if icon.contains("rain") {
+//            self.weatherIcon.image = UIImage(systemName: "cloud.rain")
+//        }
+//        else {
+//           self.weatherIcon.image = UIImage(systemName: "cloud.sun")
+//        }
+        
+        let iconID = model.weather[0].id
+        
+        let icon = getConditionName(weatherId: iconID)
+        
+        
+        
+        self.weatherIcon.image = UIImage(systemName: icon)
+        
+        func getConditionName(weatherId: Int) -> String {
+            switch weatherId {
+            case 200...232:
+                return "cloud.bolt"
+            case 300...321:
+                return "cloud.drizzle"
+            case 500...531:
+                return "cloud.rain"
+            case 600...622:
+                return "cloud.snow"
+            case 701...781:
+                return "cloud.fog"
+            case 800:
+                return "sun.max"
+            case 801...804:
+                return "cloud.bolt"
+            default:
+                return "cloud"
+            }
+        }
+        
+        
     }
        
     
